@@ -1,0 +1,9 @@
+# MySQL Database connection details
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/pkp_foods
+    username: admin
+    password: admin
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
