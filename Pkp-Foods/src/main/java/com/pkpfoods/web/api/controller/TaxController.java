@@ -10,23 +10,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pkpfoods.web.api.domain.Family;
-import com.pkpfoods.web.api.service.FamilyService;
+import com.pkpfoods.web.api.domain.Tax;
+import com.pkpfoods.web.api.service.TaxService;
 
 @RestController
 @CrossOrigin("*")
-public class FamilyController {
+public class TaxController {
 
 	@Autowired
-	private FamilyService familyService;
+	private TaxService taxService;
 
-	@GetMapping(value = "getFamilies")
-	public @ResponseBody Iterable<Family> getFamilies() {
-		return familyService.getFamilies();
+	@GetMapping(value = "getTaxes")
+	public @ResponseBody Iterable<Tax> getTaxes() {
+		return taxService.getTaxes();
 	}
 
-	@PostMapping(value = "insertFamilies", consumes = "application/json")
-	public void insertFamilies(@RequestBody List<Family> families) {
-		familyService.insertFamilies(families);
+	@PostMapping(value = "insertTaxes", consumes = "application/json")
+	public void insertTaxes(@RequestBody List<Tax> taxes) {
+		taxService.insertTaxes(taxes);
 	}
 }

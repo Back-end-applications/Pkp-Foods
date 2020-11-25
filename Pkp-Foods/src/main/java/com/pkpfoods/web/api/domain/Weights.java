@@ -12,17 +12,17 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Family {
+public class Weights {
 
 	@Id
-	private String familyId;
+	private String weightCode;
 
-	private String familyName;
+	private int weight;
 
-	private String familyImage;
+	private String unitOfMeasurement;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "productIdentifier.family")
-	private Set<Products> products;
+	@OneToMany(mappedBy = "childArticleIdentifier.weights")
+	private Set<ChildArticles> childArticles;
 
 }
