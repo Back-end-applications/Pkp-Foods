@@ -2,18 +2,19 @@ package com.pkpfoods.web.api.service;
 
 import java.util.List;
 
-import com.pkpfoods.web.api.domain.ChildArticles;
+import com.pkpfoods.web.api.domain.ChildArticlesEntity;
+import com.pkpfoods.web.api.domain.ParentArticlesEntity;
 import com.pkpfoods.web.api.domain.Products;
 
 public interface ProductService {
 
-	Iterable<Products> getParentArticles();
+	Iterable<ParentArticlesEntity> getParentArticles();
 
-	Iterable<ChildArticles> getProductsByFamilyId(String familyId);
+	Products getProductsByFamilyId(String familyId);
 
-	void insertParentArticles(List<Products> products);
+	void insertParentArticles(List<ParentArticlesEntity> parentArticles);
 
-	Iterable<ChildArticles> getChildArticles();
+	Iterable<ChildArticlesEntity> getChildArticles();
 
-	void insertChildArticles(List<ChildArticles> childArticles);
+	void insertChildArticles(List<ChildArticlesEntity> childArticles);
 }

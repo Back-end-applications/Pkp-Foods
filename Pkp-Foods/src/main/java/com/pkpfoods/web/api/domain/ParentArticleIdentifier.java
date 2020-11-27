@@ -8,14 +8,15 @@ import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
-@SuppressWarnings("serial")
 @Embeddable
 @Data
-public class ProductIdentifier implements Serializable {
+public class ParentArticleIdentifier implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private String productId;
 
 	@ManyToOne
 	@JoinColumn(name = "family_id", nullable = false, insertable = false, updatable = false)
-	private Family family;
+	private FamilyEntity family;
 }

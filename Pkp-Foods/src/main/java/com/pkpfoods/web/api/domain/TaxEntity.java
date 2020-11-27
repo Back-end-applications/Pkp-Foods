@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Entity(name = "tax_lookup")
 @Data
-public class Tax {
+public class TaxEntity {
 
 	@Id
 	private String taxCode;

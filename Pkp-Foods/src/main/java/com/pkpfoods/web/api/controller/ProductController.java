@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pkpfoods.web.api.domain.ChildArticles;
+import com.pkpfoods.web.api.domain.ChildArticlesEntity;
+import com.pkpfoods.web.api.domain.ParentArticlesEntity;
 import com.pkpfoods.web.api.domain.Products;
 import com.pkpfoods.web.api.service.ProductService;
 
@@ -22,27 +23,27 @@ public class ProductController {
 	private ProductService productService;
 
 	@GetMapping(value = "getParentArticles")
-	public @ResponseBody Iterable<Products> getParentArticles() {
+	public @ResponseBody Iterable<ParentArticlesEntity> getParentArticles() {
 		return productService.getParentArticles();
 	}
 
-	@GetMapping(value = "getProductsByFamilyId")
-	public @ResponseBody Iterable<ChildArticles> getProductsByFamilyId(String familyId) {
-		return productService.getProductsByFamilyId(familyId);
-	}
-
 	@PostMapping(value = "insertParentArticles", consumes = "application/json")
-	public void insertParentArticles(@RequestBody List<Products> products) {
-		productService.insertParentArticles(products);
+	public void insertParentArticles(@RequestBody List<ParentArticlesEntity> parentArticles) {
+		productService.insertParentArticles(parentArticles);
 	}
 
 	@GetMapping(value = "getChildArticles")
-	public @ResponseBody Iterable<ChildArticles> getChildArticles() {
+	public @ResponseBody Iterable<ChildArticlesEntity> getChildArticles() {
 		return productService.getChildArticles();
 	}
 
 	@PostMapping(value = "insertChildArticles", consumes = "application/json")
-	public void insertChildArticles(@RequestBody List<ChildArticles> childArticles) {
+	public void insertChildArticles(@RequestBody List<ChildArticlesEntity> childArticles) {
 		productService.insertChildArticles(childArticles);
+	}
+
+	@GetMapping(value = "getProductsByFamilyId")
+	public @ResponseBody Products getProductsByFamilyId(String familyId) {
+		return productService.getProductsByFamilyId(familyId);
 	}
 }

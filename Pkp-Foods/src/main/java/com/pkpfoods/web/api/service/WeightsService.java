@@ -2,12 +2,12 @@ package com.pkpfoods.web.api.service;
 
 import java.util.List;
 
-import com.pkpfoods.web.api.domain.Weights;
+import com.pkpfoods.web.api.domain.WeightsEntity;
 
 public interface WeightsService {
 
-	Iterable<Weights> getWeights();
+	Iterable<WeightsEntity> getWeights();
 
-	void insertWeights(List<Weights> weights);
+	void insertWeights(List<WeightsEntity> weights);
 
 }

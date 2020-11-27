@@ -4,13 +4,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.pkpfoods.web.api.domain.ProductIdentifier;
-import com.pkpfoods.web.api.domain.Products;
+import com.pkpfoods.web.api.domain.ParentArticleIdentifier;
+import com.pkpfoods.web.api.domain.ParentArticlesEntity;
 
 @Repository
-public interface ProductRepository extends CrudRepository<Products, ProductIdentifier> {
+public interface ParentArticlesRepository extends CrudRepository<ParentArticlesEntity, ParentArticleIdentifier> {
 
 	@Query(value = "SELECT * FROM products WHERE family_id = :familyId", nativeQuery = true)
-	Iterable<Products> findAllByFamilyId(String familyId);
+	Iterable<ParentArticlesEntity> findAllByFamilyId(String familyId);
 
 }

@@ -18,9 +18,9 @@ public class ChildArticleIdentifier implements Serializable {
 	@JoinColumns({
 			@JoinColumn(name = "product_id", referencedColumnName = "productId", nullable = false, insertable = false, updatable = false),
 			@JoinColumn(name = "family_id", referencedColumnName = "family_id", nullable = false, insertable = false, updatable = false) })
-	private Products products;
+	private ParentArticlesEntity parentArticles;
 
 	@ManyToOne
 	@JoinColumn(name = "weight_code", nullable = false, insertable = false, updatable = false)
-	private Weights weights;
+	private WeightsEntity weights;
 }

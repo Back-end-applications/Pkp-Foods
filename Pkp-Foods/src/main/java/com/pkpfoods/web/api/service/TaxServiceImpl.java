@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pkpfoods.web.api.domain.Tax;
+import com.pkpfoods.web.api.domain.TaxEntity;
 import com.pkpfoods.web.api.repository.TaxRepository;
 
 @Service
@@ -14,12 +14,12 @@ public class TaxServiceImpl implements TaxService {
 	TaxRepository taxRepository;
 
 	@Override
-	public Iterable<Tax> getTaxes() {
+	public Iterable<TaxEntity> getTaxes() {
 		return taxRepository.findAll();
 	}
 
 	@Override
-	public void insertTaxes(List<Tax> taxes) {
+	public void insertTaxes(List<TaxEntity> taxes) {
 		taxRepository.saveAll(taxes);
 	}
 }

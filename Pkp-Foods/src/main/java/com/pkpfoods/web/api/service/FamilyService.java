@@ -2,11 +2,11 @@ package com.pkpfoods.web.api.service;
 
 import java.util.List;
 
-import com.pkpfoods.web.api.domain.Family;
+import com.pkpfoods.web.api.domain.FamilyEntity;
 
 public interface FamilyService {
 
-	Iterable<Family> getFamilies();
+	Iterable<FamilyEntity> getFamilies();
 
-	void insertFamilies(List<Family> families);
+	void insertFamilies(List<FamilyEntity> families);
 }

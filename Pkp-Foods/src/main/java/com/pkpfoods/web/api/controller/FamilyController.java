@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pkpfoods.web.api.domain.Family;
+import com.pkpfoods.web.api.domain.FamilyEntity;
 import com.pkpfoods.web.api.service.FamilyService;
 
 @RestController
@@ -21,12 +21,12 @@ public class FamilyController {
 	private FamilyService familyService;
 
 	@GetMapping(value = "getFamilies")
-	public @ResponseBody Iterable<Family> getFamilies() {
+	public @ResponseBody Iterable<FamilyEntity> getFamilies() {
 		return familyService.getFamilies();
 	}
 
 	@PostMapping(value = "insertFamilies", consumes = "application/json")
-	public void insertFamilies(@RequestBody List<Family> families) {
+	public void insertFamilies(@RequestBody List<FamilyEntity> families) {
 		familyService.insertFamilies(families);
 	}
 }

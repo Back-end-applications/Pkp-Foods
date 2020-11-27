@@ -10,19 +10,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
-@Entity
+@Entity(name = "family")
 @Data
-public class Weights {
+public class FamilyEntity {
 
 	@Id
-	private String weightCode;
+	private String familyId;
 
-	private int weight;
+	private String familyName;
 
-	private String unitOfMeasurement;
+	private String familyImage;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "childArticleIdentifier.weights")
-	private Set<ChildArticles> childArticles;
+	@OneToMany(mappedBy = "parentArticleIdentifier.family")
+	private Set<ParentArticlesEntity> parentArticles;
 
 }

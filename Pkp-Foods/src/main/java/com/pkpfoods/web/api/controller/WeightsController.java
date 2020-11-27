@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pkpfoods.web.api.domain.Weights;
+import com.pkpfoods.web.api.domain.WeightsEntity;
 import com.pkpfoods.web.api.service.WeightsService;
 
 @RestController
@@ -19,12 +19,12 @@ public class WeightsController {
 	private WeightsService weightsService;
 
 	@GetMapping(value = "getWeights")
-	public @ResponseBody Iterable<Weights> getWeights() {
+	public @ResponseBody Iterable<WeightsEntity> getWeights() {
 		return weightsService.getWeights();
 	}
 
 	@PostMapping(value = "insertWeights", consumes = "application/json")
-	public void insertWeights(@RequestBody List<Weights> weights) {
+	public void insertWeights(@RequestBody List<WeightsEntity> weights) {
 		System.out.println("Weights controller");
 		weightsService.insertWeights(weights);
 	}

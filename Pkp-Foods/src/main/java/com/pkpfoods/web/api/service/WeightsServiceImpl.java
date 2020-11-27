@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pkpfoods.web.api.domain.Weights;
+import com.pkpfoods.web.api.domain.WeightsEntity;
 import com.pkpfoods.web.api.repository.WeightsRepository;
 
 @Service
@@ -15,12 +15,12 @@ public class WeightsServiceImpl implements WeightsService {
 	WeightsRepository weightsRepository;
 
 	@Override
-	public Iterable<Weights> getWeights() {
+	public Iterable<WeightsEntity> getWeights() {
 		return weightsRepository.findAll();
 	}
 
 	@Override
-	public void insertWeights(List<Weights> weights) {
+	public void insertWeights(List<WeightsEntity> weights) {
 		weightsRepository.saveAll(weights);
 	}
 }

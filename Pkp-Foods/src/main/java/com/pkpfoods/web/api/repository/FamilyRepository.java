@@ -3,9 +3,9 @@ package com.pkpfoods.web.api.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.pkpfoods.web.api.domain.Family;
+import com.pkpfoods.web.api.domain.FamilyEntity;
 
 @Repository
-public interface FamilyRepository extends CrudRepository<Family, String> {
+public interface FamilyRepository extends CrudRepository<FamilyEntity, String> {
 
 }

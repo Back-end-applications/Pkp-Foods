@@ -1,38 +1,18 @@
 package com.pkpfoods.web.api.domain;
 
-import java.util.Set;
-
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
 
 import lombok.Data;
 
-@Entity
 @Data
 public class Products {
 
-	@EmbeddedId
-	private ProductIdentifier productIdentifier;
+	private String familyId;
 
-	private String productName;
+	private String familyName;
 
-	private String productImage;
+	private String familyImage;
 
-	@Column(name = "class")
-	private String className;
-
-	private String brick;
-
-	private String brand;
-
-	private int expiry;
-
-	@JsonIgnore
-	@OneToMany(mappedBy = "childArticleIdentifier.products")
-	private Set<ChildArticles> childArticles;
+	private List<ParentArticles> parentArticlesList;
 
 }

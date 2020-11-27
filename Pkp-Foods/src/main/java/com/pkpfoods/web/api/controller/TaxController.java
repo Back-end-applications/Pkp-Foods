@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pkpfoods.web.api.domain.Tax;
+import com.pkpfoods.web.api.domain.TaxEntity;
 import com.pkpfoods.web.api.service.TaxService;
 
 @RestController
@@ -21,12 +21,12 @@ public class TaxController {
 	private TaxService taxService;
 
 	@GetMapping(value = "getTaxes")
-	public @ResponseBody Iterable<Tax> getTaxes() {
+	public @ResponseBody Iterable<TaxEntity> getTaxes() {
 		return taxService.getTaxes();
 	}
 
 	@PostMapping(value = "insertTaxes", consumes = "application/json")
-	public void insertTaxes(@RequestBody List<Tax> taxes) {
+	public void insertTaxes(@RequestBody List<TaxEntity> taxes) {
 		taxService.insertTaxes(taxes);
 	}
 }
