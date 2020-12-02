@@ -24,6 +24,11 @@ CREATE TABLE `pkp_foods`.`products` (
     ON UPDATE RESTRICT);
     
 CREATE TABLE `pkp_foods`.`weights` (
+  `tax_code` VARCHAR(10) NOT NULL,
+  `tax_percentage` INT NOT NULL,
+  PRIMARY KEY (`tax_code`));
+  
+CREATE TABLE `pkp_foods`.`tax_lookup` (
   `weight_code` VARCHAR(1) NOT NULL,
   `weight` INT NOT NULL,
   `unit_of_measurement` VARCHAR(10) NOT NULL,
