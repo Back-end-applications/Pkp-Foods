@@ -5,6 +5,8 @@ target/
 !**/src/test/**/target/
 
 ### STS ###
+bin/
+tmp/
 .apt_generated
 .classpath
 .factorypath
@@ -12,6 +14,13 @@ target/
 .settings
 .springBeans
 .sts4-cache
+.metadata
+.loadpath
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
 
 ### IntelliJ IDEA ###
 .idea
@@ -31,3 +40,12 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Java ###
+.mtj.tmp/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
