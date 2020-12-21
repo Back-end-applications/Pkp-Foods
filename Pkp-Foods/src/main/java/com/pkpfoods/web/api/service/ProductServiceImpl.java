@@ -87,9 +87,9 @@ public class ProductServiceImpl implements ProductService {
 						.setProductName(childArticle.getChildArticleIdentifier().getParentArticles().getProductName());
 				parentArticle.setProductImage(
 						childArticle.getChildArticleIdentifier().getParentArticles().getProductImage());
-				parentArticle.setClassName(childArticle.getChildArticleIdentifier().getParentArticles().getClassName());
-				parentArticle.setBrick(childArticle.getChildArticleIdentifier().getParentArticles().getBrick());
-				parentArticle.setBrand(childArticle.getChildArticleIdentifier().getParentArticles().getBrand());
+				parentArticle.setClassId(childArticle.getChildArticleIdentifier().getParentArticles().getClassId());
+				parentArticle.setBrickId(childArticle.getChildArticleIdentifier().getParentArticles().getBrickId());
+				parentArticle.setBrandId(childArticle.getChildArticleIdentifier().getParentArticles().getBrandId());
 				parentArticle.setExpiry(childArticle.getChildArticleIdentifier().getParentArticles().getExpiry());
 				parentArticle.setTaxCode(childArticle.getTaxCode());
 				parentArticle.setChildArticlesList(new ArrayList<>());

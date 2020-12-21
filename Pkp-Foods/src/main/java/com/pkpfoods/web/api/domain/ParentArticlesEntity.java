@@ -2,7 +2,6 @@ package com.pkpfoods.web.api.domain;
 
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -22,12 +21,11 @@ public class ParentArticlesEntity {
 
 	private String productImage;
 
-	@Column(name = "class")
-	private String className;
+	private String classId;
 
-	private String brick;
+	private String brickId;
 
-	private String brand;
+	private String brandId;
 
 	private int expiry;
 

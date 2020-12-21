@@ -1,5 +1,6 @@
 package com.pkpfoods.web.api.domain;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
@@ -10,7 +11,7 @@ import lombok.Data;
 public class ChildArticlesEntity {
 
 	@EmbeddedId
-	private ChildArticleIdentifier childArticleIdentifier;
+	private ChildArticlesIdentifier childArticleIdentifier;
 
 	private double costPrice;
 
@@ -19,6 +20,9 @@ public class ChildArticlesEntity {
 	private String taxCode;
 
 	private double maximumRetailPrice;
+
+	@Column(name = "EAN_Code")
+	private String EANCode;
 
 	private int inventory;
 

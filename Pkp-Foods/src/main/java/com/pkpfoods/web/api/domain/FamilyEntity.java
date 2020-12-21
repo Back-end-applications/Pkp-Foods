@@ -25,4 +25,8 @@ public class FamilyEntity {
 	@OneToMany(mappedBy = "parentArticleIdentifier.family")
 	private Set<ParentArticlesEntity> parentArticles;
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "classIdentifier.family")
+	private Set<ClassEntity> classEntity;
+
 }

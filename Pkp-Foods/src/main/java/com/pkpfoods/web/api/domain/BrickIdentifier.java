@@ -9,18 +9,18 @@ import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
-@SuppressWarnings("serial")
 @Embeddable
 @Data
-public class ChildArticleIdentifier implements Serializable {
+public class BrickIdentifier implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private String brickId;
 
 	@ManyToOne
 	@JoinColumns({
-			@JoinColumn(name = "product_id", referencedColumnName = "productId", nullable = false, insertable = false, updatable = false),
+			@JoinColumn(name = "class_id", referencedColumnName = "classId", nullable = false, insertable = false, updatable = false),
 			@JoinColumn(name = "family_id", referencedColumnName = "family_id", nullable = false, insertable = false, updatable = false) })
-	private ParentArticlesEntity parentArticles;
+	private ClassEntity classEntity;
 
-	@ManyToOne
-	@JoinColumn(name = "weight_code", nullable = false, insertable = false, updatable = false)
-	private WeightsEntity weights;
 }

@@ -13,11 +13,11 @@ public class ParentArticles {
 
 	private String productImage;
 
-	private String className;
+	private String classId;
 
-	private String brick;
+	private String brickId;
 
-	private String brand;
+	private String brandId;
 
 	private int expiry;
 
