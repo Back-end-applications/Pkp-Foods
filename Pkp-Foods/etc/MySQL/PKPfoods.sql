@@ -126,4 +126,13 @@ CREATE TABLE `pkp_foods`.`child_articles` (
 ALTER TABLE `pkp_foods`.`child_articles` 
 CHANGE COLUMN `EAN_code` `EAN_code` VARCHAR(60) NULL ;
 
+CREATE TABLE `pkp_foods`.`coupons` (
+  `coupon_code` VARCHAR(20) NOT NULL,
+  `description` VARCHAR(100) NOT NULL,
+  `discount` FLOAT(10,2) NOT NULL,
+  `discount_type` VARCHAR(45) NOT NULL,
+  `valid_from` DATE NOT NULL,
+  `valid_to` DATE NOT NULL,
+  PRIMARY KEY (`coupon_code`));
+
 commit;
