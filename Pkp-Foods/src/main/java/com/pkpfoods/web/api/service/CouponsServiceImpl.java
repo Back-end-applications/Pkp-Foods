@@ -24,4 +24,9 @@ public class CouponsServiceImpl implements CouponsService {
 		return couponsRepository.findAll();
 	}
 
+	@Override
+	public void deleteCoupons(List<String> coupons) {
+		coupons.forEach(coupon -> couponsRepository.deleteById(coupon));
+	}
+
 }

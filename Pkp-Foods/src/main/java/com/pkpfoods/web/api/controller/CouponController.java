@@ -27,6 +27,11 @@ public class CouponController {
 		System.out.println("Insert Coupons ====== End");
 	}
 
+	@PostMapping(value = "deleteCoupons")
+	public void deleteCoupons(@RequestBody List<String> coupons) {
+		couponsService.deleteCoupons(coupons);
+	}
+
 	@GetMapping(value = "getCoupons")
 	public @ResponseBody Iterable<CouponsEntity> getCoupons() {
 		return couponsService.getCoupons();

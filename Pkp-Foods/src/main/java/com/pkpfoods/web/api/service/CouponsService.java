@@ -10,4 +10,6 @@ public interface CouponsService {
 
 	Iterable<CouponsEntity> getCoupons();
 
+	void deleteCoupons(List<String> coupons);
+
 }
