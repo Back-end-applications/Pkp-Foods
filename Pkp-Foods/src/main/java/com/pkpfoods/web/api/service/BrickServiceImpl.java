@@ -20,6 +20,11 @@ public class BrickServiceImpl implements BrickService {
 	}
 
 	@Override
+	public Iterable<BrickEntity> getBricks(String classId) {
+		return brickRepository.findAllByClassId(classId);
+	}
+
+	@Override
 	public void insertBricks(List<BrickEntity> bricks) {
 		brickRepository.saveAll(bricks);
 	}

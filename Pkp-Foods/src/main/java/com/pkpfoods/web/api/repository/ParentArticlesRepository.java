@@ -10,7 +10,7 @@ import com.pkpfoods.web.api.domain.ParentArticlesEntity;
 @Repository
 public interface ParentArticlesRepository extends CrudRepository<ParentArticlesEntity, ParentArticleIdentifier> {
 
-	@Query(value = "SELECT * FROM products WHERE family_id = :familyId", nativeQuery = true)
+	@Query(value = "SELECT * FROM pkp_foods.products WHERE family_id = :familyId ORDER BY product_name", nativeQuery = true)
 	Iterable<ParentArticlesEntity> findAllByFamilyId(String familyId);
 
 }

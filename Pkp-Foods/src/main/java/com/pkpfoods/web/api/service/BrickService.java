@@ -8,6 +8,8 @@ public interface BrickService {
 
 	Iterable<BrickEntity> getBricks();
 
+	Iterable<BrickEntity> getBricks(String classId);
+
 	void insertBricks(List<BrickEntity> bricks);
 
 }

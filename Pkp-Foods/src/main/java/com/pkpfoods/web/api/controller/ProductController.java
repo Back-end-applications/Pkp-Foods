@@ -27,9 +27,19 @@ public class ProductController {
 		return productService.getParentArticles();
 	}
 
+	@GetMapping(value = "getParentArticles", params = { "familyId" })
+	public @ResponseBody Iterable<ParentArticlesEntity> getParentArticles(String familyId) {
+		return productService.getParentArticles(familyId);
+	}
+
 	@PostMapping(value = "insertParentArticles", consumes = "application/json")
 	public void insertParentArticles(@RequestBody List<ParentArticlesEntity> parentArticles) {
 		productService.insertParentArticles(parentArticles);
+	}
+
+	@PostMapping(value = "deleteParentArticles")
+	public void deleteParentArticles(@RequestBody List<ParentArticlesEntity> parentArticles) {
+		productService.deleteParentArticles(parentArticles);
 	}
 
 	@GetMapping(value = "getChildArticles")
@@ -42,8 +52,14 @@ public class ProductController {
 		productService.insertChildArticles(childArticles);
 	}
 
+	@PostMapping(value = "deleteChildArticles")
+	public void deleteChildArticles(@RequestBody List<ChildArticlesEntity> childArticles) {
+		productService.deleteChildArticles(childArticles);
+	}
+
 	@GetMapping(value = "getProductsByFamilyId")
 	public @ResponseBody Products getProductsByFamilyId(String familyId) {
 		return productService.getProductsByFamilyId(familyId);
 	}
+
 }

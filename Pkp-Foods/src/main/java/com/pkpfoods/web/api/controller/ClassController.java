@@ -25,6 +25,11 @@ public class ClassController {
 		return classService.getClasses();
 	}
 
+	@GetMapping(value = "getClasses", params = { "familyId" })
+	public @ResponseBody Iterable<ClassEntity> getClasses(String familyId) {
+		return classService.getClasses(familyId);
+	}
+
 	@PostMapping(value = "insertClasses", consumes = "application/json")
 	public void insertClasses(@RequestBody List<ClassEntity> classes) {
 		classService.insertClasses(classes);

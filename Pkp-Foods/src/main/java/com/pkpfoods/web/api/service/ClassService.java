@@ -8,6 +8,8 @@ public interface ClassService {
 
 	Iterable<ClassEntity> getClasses();
 
+	Iterable<ClassEntity> getClasses(String familyId);
+
 	void insertClasses(List<ClassEntity> classes);
 
 }

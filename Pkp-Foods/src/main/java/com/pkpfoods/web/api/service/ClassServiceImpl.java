@@ -20,6 +20,11 @@ public class ClassServiceImpl implements ClassService {
 	}
 
 	@Override
+	public Iterable<ClassEntity> getClasses(String familyId) {
+		return classRepository.findAllByFamilyId(familyId);
+	}
+
+	@Override
 	public void insertClasses(List<ClassEntity> classes) {
 		classRepository.saveAll(classes);
 	}

@@ -7,5 +7,5 @@ import com.pkpfoods.web.api.domain.TaxEntity;
 
 @Repository
 public interface TaxRepository extends CrudRepository<TaxEntity, String> {
-
+	Iterable<TaxEntity> findAllByOrderByTaxPercentage();
 }

@@ -1,5 +1,6 @@
 CREATE DATABASE `pkp_foods`;
-  
+
+/************* Admin Queries ****************/
 CREATE TABLE `pkp_foods`.`weights` (
   `weight_code` VARCHAR(1) NOT NULL,
   `weight` INT NOT NULL,
@@ -15,6 +16,7 @@ CREATE TABLE `pkp_foods`.`family` (
   `family_id` VARCHAR(10) NOT NULL,
   `family_name` VARCHAR(45) NOT NULL,
   `family_image` VARCHAR(100) NOT NULL,
+  `description` VARCHAR(500),
   PRIMARY KEY (`family_id`));
   
 CREATE TABLE `pkp_foods`.`class` (
@@ -61,6 +63,7 @@ CREATE TABLE `pkp_foods`.`products` (
   `brick_id` VARCHAR(10) NULL,
   `brand_id` VARCHAR(10) NULL,
   `expiry` INT(3) NOT NULL,
+  `description` VARCHAR(500),
   PRIMARY KEY (`product_id`, `family_id`),
   INDEX `fk_products_family_familyId_idx` (`family_id` ASC) VISIBLE,
   INDEX `fk_products_class_classId_idx` (`class_id` ASC) VISIBLE,
@@ -93,10 +96,18 @@ CREATE TABLE `pkp_foods`.`child_articles` (
   `weight_code` VARCHAR(1) NOT NULL,
   `cost_price` FLOAT(10,2) NOT NULL,
   `margin` FLOAT(10,2) NOT NULL,
+  `discount` FLOAT(10,2),
+  `discount_type` VARCHAR(45),
   `tax_code` VARCHAR(10) NOT NULL,
   `maximum_retail_price` FLOAT(10,2) NOT NULL,
-  `EAN_code` VARCHAR(60) NOT NULL,
+  `offer_price` FLOAT(10,2) NOT NULL,
+  `length` FLOAT NOT NULL,
+  `width` FLOAT NOT NULL,
+  `height` FLOAT NOT NULL,
+  `EAN_code` VARCHAR(60),
   `inventory` INT NOT NULL,
+  `valid_from` DATE NOT NULL,
+  `valid_to` DATE NOT NULL,
   `display` TINYINT(1) NOT NULL,
   PRIMARY KEY (`family_id`, `product_id`, `weight_code`),
   INDEX `fk_child_articles_products_productId_idx` (`product_id` ASC) VISIBLE,
@@ -122,9 +133,6 @@ CREATE TABLE `pkp_foods`.`child_articles` (
     REFERENCES `pkp_foods`.`tax_lookup` (`tax_code`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
-    
-ALTER TABLE `pkp_foods`.`child_articles` 
-CHANGE COLUMN `EAN_code` `EAN_code` VARCHAR(60) NULL ;
 
 CREATE TABLE `pkp_foods`.`coupons` (
   `coupon_code` VARCHAR(20) NOT NULL,
@@ -134,5 +142,72 @@ CREATE TABLE `pkp_foods`.`coupons` (
   `valid_from` DATE NOT NULL,
   `valid_to` DATE NOT NULL,
   PRIMARY KEY (`coupon_code`));
+
+/************* Address Queries ****************/
+CREATE TABLE `pkp_foods`.`country` (
+  `country_id` VARCHAR(10) NOT NULL,
+  `country_name` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`country_id`));
+
+CREATE TABLE `pkp_foods`.`state` (
+  `state_id` VARCHAR(10) NOT NULL,
+  `country_id` VARCHAR(10) NOT NULL,
+  `state_name` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`state_id`, `country_id`),
+  INDEX `fk_state_country_countryId_idx` (`country_id` ASC) VISIBLE,
+  CONSTRAINT `fk_state_country_countryId`
+    FOREIGN KEY (`country_id`)
+    REFERENCES `pkp_foods`.`country` (`country_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `pkp_foods`.`district` (
+  `district_id` VARCHAR(10) NOT NULL,
+  `state_id` VARCHAR(10) NOT NULL,
+  `country_id` VARCHAR(10) NOT NULL,
+  `city_name` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`district_id`, `state_id`, `country_id`),
+  INDEX `fk_district_state_stateId_idx` (`state_id` ASC) VISIBLE,
+  INDEX `fk_district_state_countryId_idx` (`country_id` ASC) VISIBLE,
+  CONSTRAINT `fk_district_state_stateId`
+	FOREIGN KEY (`state_id`)
+	REFERENCES `pkp_foods`.`state` (`state_id`)
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION,
+  CONSTRAINT `fk_district_state_countryId`
+	FOREIGN KEY (`country_id`)
+	REFERENCES `pkp_foods`.`state` (`country_id`)
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION);
+
+/************* Customer Queries ****************/
+CREATE TABLE `pkp_foods`.`customer_profile` (
+  `customer_id` VARCHAR(30) NOT NULL,
+  `first_name` VARCHAR(100) NOT NULL,
+  `last_name` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(200) NOT NULL,
+  `active` TINYINT(1) NOT NULL,
+  `create_date` DATE NOT NULL,
+  `last_update` DATE NOT NULL,
+  PRIMARY KEY (`customer_id`),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE);
+
+/* Table deletion queries */
+DROP TABLE `pkp_foods`.`child_articles`;
+DROP TABLE `pkp_foods`.`products`;
+DROP TABLE `pkp_foods`.`brick`;
+DROP TABLE `pkp_foods`.`class`;
+DROP TABLE `pkp_foods`.`family`;
+
+DROP TABLE `pkp_foods`.`district`;
+DROP TABLE `pkp_foods`.`state`;
+DROP TABLE `pkp_foods`.`country`;
+
+DROP TABLE `pkp_foods`.`coupons`;
+DROP TABLE `pkp_foods`.`tax_lookup`;
+DROP TABLE `pkp_foods`.`weights`;
+DROP TABLE `pkp_foods`.`brand`;
+
+DROP TABLE `pkp_foods`.`customer_profile`;
 
 commit;

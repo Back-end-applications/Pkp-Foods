@@ -23,6 +23,8 @@ public class ParentArticles {
 
 	private String taxCode;
 
+	private String description;
+
 	private List<ChildArticles> childArticlesList;
 
 }

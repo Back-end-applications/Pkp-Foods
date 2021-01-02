@@ -36,8 +36,18 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	public Iterable<ParentArticlesEntity> getParentArticles(String familyId) {
+		return parentArticlesRepository.findAllByFamilyId(familyId);
+	}
+
+	@Override
 	public void insertParentArticles(List<ParentArticlesEntity> parentArticles) {
 		parentArticlesRepository.saveAll(parentArticles);
+	}
+
+	@Override
+	public void deleteParentArticles(List<ParentArticlesEntity> parentArticles) {
+		parentArticles.forEach(parentArticle -> parentArticlesRepository.delete(parentArticle));
 	}
 
 	@Override
@@ -47,12 +57,45 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void insertChildArticles(List<ChildArticlesEntity> childArticles) {
+
 		childArticles.forEach(childArticle -> {
+
+			/* Setting MRP based on Cost price, Margin & Tax percentage */
 			double price = childArticle.getCostPrice() + childArticle.getMargin();
 			childArticle.setMaximumRetailPrice(
 					price + (price * taxRepository.findById(childArticle.getTaxCode()).get().getTaxPercentage() / 100));
+
+			/*
+			 * Setting the offer price if discount is available else offer price is same as
+			 * MRP
+			 */
+			double discount = childArticle.getDiscount();
+			double MRP = childArticle.getMaximumRetailPrice();
+
+			System.out.println(discount);
+			if (discount > 0) {
+				System.out.println("discount available");
+				if ("Fixed".equalsIgnoreCase(childArticle.getDiscountType())) {
+					childArticle.setOfferPrice(MRP - discount);
+				} else if ("Percentage".equalsIgnoreCase(childArticle.getDiscountType())) {
+					childArticle.setOfferPrice(MRP - (MRP * discount / 100));
+				}
+			} else {
+				System.out.println("discount not available");
+				childArticle.setOfferPrice(MRP);
+			}
+
+			System.out.println("Final offer price : " + childArticle.getOfferPrice());
+
 		});
+
 		childArticlesRepository.saveAll(childArticles);
+
+	}
+
+	@Override
+	public void deleteChildArticles(List<ChildArticlesEntity> childArticles) {
+		childArticles.forEach(childArticle -> childArticlesRepository.delete(childArticle));
 	}
 
 	@Override

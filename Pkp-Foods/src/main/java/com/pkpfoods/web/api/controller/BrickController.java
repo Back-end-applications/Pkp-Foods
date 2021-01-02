@@ -25,6 +25,11 @@ public class BrickController {
 		return brickService.getBricks();
 	}
 
+	@GetMapping(value = "getBricks", params = { "classId" })
+	public @ResponseBody Iterable<BrickEntity> getBricks(String classId) {
+		return brickService.getBricks(classId);
+	}
+
 	@PostMapping(value = "insertBricks", consumes = "application/json")
 	public void insertBricks(@RequestBody List<BrickEntity> bricks) {
 		brickService.insertBricks(bricks);

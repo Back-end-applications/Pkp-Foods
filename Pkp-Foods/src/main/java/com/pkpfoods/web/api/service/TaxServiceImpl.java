@@ -15,7 +15,7 @@ public class TaxServiceImpl implements TaxService {
 
 	@Override
 	public Iterable<TaxEntity> getTaxes() {
-		return taxRepository.findAll();
+		return taxRepository.findAllByOrderByTaxPercentage();
 	}
 
 	@Override

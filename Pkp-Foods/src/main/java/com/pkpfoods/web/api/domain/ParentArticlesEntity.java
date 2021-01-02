@@ -29,6 +29,8 @@ public class ParentArticlesEntity {
 
 	private int expiry;
 
+	private String description;
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "childArticleIdentifier.parentArticles")
 	private Set<ChildArticlesEntity> childArticles;

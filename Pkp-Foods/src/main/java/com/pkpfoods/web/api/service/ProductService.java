@@ -10,11 +10,18 @@ public interface ProductService {
 
 	Iterable<ParentArticlesEntity> getParentArticles();
 
-	Products getProductsByFamilyId(String familyId);
+	Iterable<ParentArticlesEntity> getParentArticles(String familyId);
 
 	void insertParentArticles(List<ParentArticlesEntity> parentArticles);
 
 	Iterable<ChildArticlesEntity> getChildArticles();
 
 	void insertChildArticles(List<ChildArticlesEntity> childArticles);
+
+	void deleteChildArticles(List<ChildArticlesEntity> childArticles);
+
+	Products getProductsByFamilyId(String familyId);
+
+	void deleteParentArticles(List<ParentArticlesEntity> parentArticles);
+
 }
