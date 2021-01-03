@@ -12,4 +12,6 @@ public interface ClassService {
 
 	void insertClasses(List<ClassEntity> classes);
 
+	void deleteClasses(List<ClassEntity> classes);
+
 }

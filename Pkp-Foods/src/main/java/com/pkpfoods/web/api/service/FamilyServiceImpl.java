@@ -24,4 +24,9 @@ public class FamilyServiceImpl implements FamilyService {
 		familyRepository.saveAll(families);
 	}
 
+	@Override
+	public void deleteFamilies(List<FamilyEntity> families) {
+		families.forEach(family -> familyRepository.delete(family));
+	}
+
 }

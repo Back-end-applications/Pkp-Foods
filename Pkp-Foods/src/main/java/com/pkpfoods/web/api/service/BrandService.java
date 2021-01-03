@@ -10,4 +10,6 @@ public interface BrandService {
 
 	void insertBrands(List<BrandEntity> brands);
 
+	void deleteBrands(List<BrandEntity> brands);
+
 }

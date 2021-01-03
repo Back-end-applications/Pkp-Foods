@@ -24,4 +24,9 @@ public class BrandServiceImpl implements BrandService {
 		brandRepository.saveAll(brands);
 	}
 
+	@Override
+	public void deleteBrands(List<BrandEntity> brands) {
+		brands.forEach(brand -> brandRepository.delete(brand));
+	}
+
 }

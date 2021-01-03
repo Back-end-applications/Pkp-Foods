@@ -9,4 +9,6 @@ public interface FamilyService {
 	Iterable<FamilyEntity> getFamilies();
 
 	void insertFamilies(List<FamilyEntity> families);
+
+	void deleteFamilies(List<FamilyEntity> families);
 }

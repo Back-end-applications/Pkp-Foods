@@ -35,4 +35,8 @@ public class BrickController {
 		brickService.insertBricks(bricks);
 	}
 
+	@PostMapping(value = "deleteBricks")
+	public void deleteBricks(@RequestBody List<BrickEntity> bricks) {
+		brickService.deleteBricks(bricks);
+	}
 }

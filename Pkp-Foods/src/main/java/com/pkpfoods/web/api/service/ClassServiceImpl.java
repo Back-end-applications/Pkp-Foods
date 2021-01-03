@@ -29,4 +29,9 @@ public class ClassServiceImpl implements ClassService {
 		classRepository.saveAll(classes);
 	}
 
+	@Override
+	public void deleteClasses(List<ClassEntity> classes) {
+		classes.forEach(classObj -> classRepository.delete(classObj));
+	}
+
 }

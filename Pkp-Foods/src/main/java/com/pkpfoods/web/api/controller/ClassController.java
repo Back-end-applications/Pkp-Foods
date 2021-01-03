@@ -35,4 +35,9 @@ public class ClassController {
 		classService.insertClasses(classes);
 	}
 
+	@PostMapping(value = "deleteClasses")
+	public void deleteClasses(@RequestBody List<ClassEntity> classes) {
+		classService.deleteClasses(classes);
+	}
+
 }

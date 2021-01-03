@@ -30,4 +30,9 @@ public class BrandController {
 		brandService.insertBrands(brands);
 	}
 
+	@PostMapping(value = "deleteBrands")
+	public void deleteBrands(@RequestBody List<BrandEntity> brands) {
+		brandService.deleteBrands(brands);
+	}
+
 }

@@ -29,4 +29,9 @@ public class BrickServiceImpl implements BrickService {
 		brickRepository.saveAll(bricks);
 	}
 
+	@Override
+	public void deleteBricks(List<BrickEntity> bricks) {
+		bricks.forEach(brick -> brickRepository.delete(brick));
+	}
+
 }

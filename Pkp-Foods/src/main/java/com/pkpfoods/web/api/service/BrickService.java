@@ -12,4 +12,6 @@ public interface BrickService {
 
 	void insertBricks(List<BrickEntity> bricks);
 
+	void deleteBricks(List<BrickEntity> bricks);
+
 }

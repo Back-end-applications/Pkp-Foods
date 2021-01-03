@@ -29,4 +29,9 @@ public class FamilyController {
 	public void insertFamilies(@RequestBody List<FamilyEntity> families) {
 		familyService.insertFamilies(families);
 	}
+
+	@PostMapping(value = "deleteFamilies")
+	public void deleteFamilies(@RequestBody List<FamilyEntity> families) {
+		familyService.deleteFamilies(families);
+	}
 }
