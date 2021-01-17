@@ -27,6 +27,7 @@ public class FamilyController {
 
 	@PostMapping(value = "insertFamilies", consumes = "application/json")
 	public void insertFamilies(@RequestBody List<FamilyEntity> families) {
+		families.forEach(family -> System.out.println(family.toString()));
 		familyService.insertFamilies(families);
 	}
 

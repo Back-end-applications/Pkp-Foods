@@ -16,4 +16,6 @@ public class FamilyEntity {
 
 	private String familyImage;
 
+	private String description;
+
 }
