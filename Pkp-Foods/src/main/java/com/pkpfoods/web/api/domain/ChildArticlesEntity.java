@@ -2,18 +2,21 @@ package com.pkpfoods.web.api.domain;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
 import lombok.Data;
 
-@Entity(name = "child_articles")
+@Entity(name = "admin_classification_child_articles")
 @Data
 public class ChildArticlesEntity {
 
 	@EmbeddedId
 	private ChildArticlesIdentifier childArticleIdentifier;
+
+	private int weight;
+
+	private String unitOfMeasurement;
 
 	private double costPrice;
 
@@ -35,8 +38,7 @@ public class ChildArticlesEntity {
 
 	private double height;
 
-	@Column(name = "EAN_Code")
-	private String EANCode;
+	private String eanCode;
 
 	private int inventory;
 

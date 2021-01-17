@@ -22,9 +22,7 @@ public class CouponController {
 
 	@PostMapping(value = "insertCoupons")
 	public void insertCoupons(@RequestBody List<CouponsEntity> coupons) {
-		System.out.println("Insert Coupons ====== Start");
 		couponsService.insertCoupons(coupons);
-		System.out.println("Insert Coupons ====== End");
 	}
 
 	@PostMapping(value = "deleteCoupons")

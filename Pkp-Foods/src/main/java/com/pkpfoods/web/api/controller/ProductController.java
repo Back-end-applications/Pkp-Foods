@@ -27,9 +27,9 @@ public class ProductController {
 		return productService.getParentArticles();
 	}
 
-	@GetMapping(value = "getParentArticles", params = { "familyId" })
-	public @ResponseBody Iterable<ParentArticlesEntity> getParentArticles(String familyId) {
-		return productService.getParentArticles(familyId);
+	@GetMapping(value = "getParentArticles", params = { "brickId" })
+	public @ResponseBody Iterable<ParentArticlesEntity> getParentArticles(String brickId) {
+		return productService.getParentArticles(brickId);
 	}
 
 	@PostMapping(value = "insertParentArticles", consumes = "application/json")

@@ -5,7 +5,7 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
-@Entity(name = "brand")
+@Entity(name = "admin_brand")
 @Data
 public class BrandEntity {
 

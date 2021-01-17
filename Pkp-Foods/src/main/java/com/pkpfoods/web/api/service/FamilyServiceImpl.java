@@ -21,7 +21,25 @@ public class FamilyServiceImpl implements FamilyService {
 
 	@Override
 	public void insertFamilies(List<FamilyEntity> families) {
-		familyRepository.saveAll(families);
+		families.forEach(family -> {
+
+			List<FamilyEntity> familiesList = familyRepository.findAllByOrderByFamilyId();
+			int i = 0;
+
+			for (; i < familiesList.size(); i++) {
+				if (Integer.parseInt(familiesList.get(i).getFamilyId()) != i + 1) {
+					family.setFamilyId(String.format("%02d", i + 1));
+					break;
+				}
+			}
+
+			if (family.getFamilyId() == null) {
+				family.setFamilyId(String.format("%02d", i + 1));
+			}
+
+			familyRepository.save(family);
+
+		});
 	}
 
 	@Override

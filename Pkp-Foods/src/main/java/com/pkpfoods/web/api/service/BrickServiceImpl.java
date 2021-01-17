@@ -16,7 +16,7 @@ public class BrickServiceImpl implements BrickService {
 
 	@Override
 	public Iterable<BrickEntity> getBricks() {
-		return brickRepository.findAll();
+		return brickRepository.findAllByOrderByBrickIdentifierBrickId();
 	}
 
 	@Override
@@ -26,7 +26,25 @@ public class BrickServiceImpl implements BrickService {
 
 	@Override
 	public void insertBricks(List<BrickEntity> bricks) {
-		brickRepository.saveAll(bricks);
+		bricks.forEach(brick -> {
+
+			List<BrickEntity> bricksList = brickRepository.findAllByOrderByBrickIdentifierBrickId();
+			int i = 0;
+
+			for (; i < bricksList.size(); i++) {
+				if (Integer.parseInt(bricksList.get(i).getBrickIdentifier().getBrickId()) != i + 1) {
+					brick.getBrickIdentifier().setBrickId(String.format("%02d", i + 1));
+					break;
+				}
+			}
+
+			if (brick.getBrickIdentifier().getBrickId() == null) {
+				brick.getBrickIdentifier().setBrickId(String.format("%02d", i + 1));
+			}
+
+			brickRepository.save(brick);
+
+		});
 	}
 
 	@Override

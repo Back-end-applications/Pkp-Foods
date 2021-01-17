@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 
 import lombok.Data;
 
-@Entity(name = "brick")
+@Entity(name = "admin_classification_brick")
 @Data
 public class BrickEntity {
 

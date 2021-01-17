@@ -5,7 +5,7 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
-@Entity(name = "tax_lookup")
+@Entity(name = "admin_tax_lookup")
 @Data
 public class TaxEntity {
 

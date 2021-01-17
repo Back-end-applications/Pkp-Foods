@@ -10,7 +10,7 @@ public interface ProductService {
 
 	Iterable<ParentArticlesEntity> getParentArticles();
 
-	Iterable<ParentArticlesEntity> getParentArticles(String familyId);
+	List<ParentArticlesEntity> getParentArticles(String brickId);
 
 	void insertParentArticles(List<ParentArticlesEntity> parentArticles);
 

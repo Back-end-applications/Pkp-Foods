@@ -7,7 +7,7 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
-@Entity(name = "coupons")
+@Entity(name = "admin_coupons")
 @Data
 public class CouponsEntity {
 

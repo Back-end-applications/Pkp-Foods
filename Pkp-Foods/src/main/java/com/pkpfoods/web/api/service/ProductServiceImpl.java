@@ -13,7 +13,6 @@ import com.pkpfoods.web.api.domain.ChildArticlesEntity;
 import com.pkpfoods.web.api.domain.ParentArticles;
 import com.pkpfoods.web.api.domain.ParentArticlesEntity;
 import com.pkpfoods.web.api.domain.Products;
-import com.pkpfoods.web.api.domain.Weight;
 import com.pkpfoods.web.api.repository.ChildArticlesRepository;
 import com.pkpfoods.web.api.repository.ParentArticlesRepository;
 import com.pkpfoods.web.api.repository.TaxRepository;
@@ -36,13 +35,33 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Iterable<ParentArticlesEntity> getParentArticles(String familyId) {
-		return parentArticlesRepository.findAllByFamilyId(familyId);
+	public List<ParentArticlesEntity> getParentArticles(String brickId) {
+		return parentArticlesRepository.findAllByBrickId(brickId);
 	}
 
 	@Override
 	public void insertParentArticles(List<ParentArticlesEntity> parentArticles) {
-		parentArticlesRepository.saveAll(parentArticles);
+		parentArticles.forEach(parentArticle -> {
+
+			List<ParentArticlesEntity> parentArticlesList = (List<ParentArticlesEntity>) parentArticlesRepository
+					.findAll();
+			int i = 0;
+
+			for (; i < parentArticlesList.size(); i++) {
+				if (Integer.parseInt(parentArticlesList.get(i).getParentArticleIdentifier().getParentArticleId()) != i
+						+ 1) {
+					parentArticle.getParentArticleIdentifier().setParentArticleId(String.format("%02d", i + 1));
+					break;
+				}
+			}
+
+			if (parentArticle.getParentArticleIdentifier().getParentArticleId() == null) {
+				parentArticle.getParentArticleIdentifier().setParentArticleId(String.format("%02d", i + 1));
+			}
+
+			parentArticlesRepository.save(parentArticle);
+
+		});
 	}
 
 	@Override
@@ -72,24 +91,35 @@ public class ProductServiceImpl implements ProductService {
 			double discount = childArticle.getDiscount();
 			double MRP = childArticle.getMaximumRetailPrice();
 
-			System.out.println(discount);
 			if (discount > 0) {
-				System.out.println("discount available");
 				if ("Fixed".equalsIgnoreCase(childArticle.getDiscountType())) {
 					childArticle.setOfferPrice(MRP - discount);
 				} else if ("Percentage".equalsIgnoreCase(childArticle.getDiscountType())) {
 					childArticle.setOfferPrice(MRP - (MRP * discount / 100));
 				}
 			} else {
-				System.out.println("discount not available");
 				childArticle.setOfferPrice(MRP);
 			}
 
-			System.out.println("Final offer price : " + childArticle.getOfferPrice());
+			List<ChildArticlesEntity> childArticlesList = (List<ChildArticlesEntity>) childArticlesRepository.findAll();
+
+			int i = 0;
+
+			for (; i < childArticlesList.size(); i++) {
+				if (Integer.parseInt(childArticlesList.get(i).getChildArticleIdentifier().getChildArticleId()) != i
+						+ 1) {
+					childArticle.getChildArticleIdentifier().setChildArticleId(String.format("%03d", i + 1));
+					break;
+				}
+			}
+
+			if (childArticle.getChildArticleIdentifier().getChildArticleId() == null) {
+				childArticle.getChildArticleIdentifier().setChildArticleId(String.format("%03d", i + 1));
+			}
+
+			childArticlesRepository.save(childArticle);
 
 		});
-
-		childArticlesRepository.saveAll(childArticles);
 
 	}
 
@@ -114,31 +144,36 @@ public class ProductServiceImpl implements ProductService {
 		childArticlesList.forEach(childArticle -> {
 
 			product.setFamilyId(familyId);
-			product.setFamilyName(childArticle.getChildArticleIdentifier().getParentArticles()
-					.getParentArticleIdentifier().getFamily().getFamilyName());
-			product.setFamilyImage(childArticle.getChildArticleIdentifier().getParentArticles()
-					.getParentArticleIdentifier().getFamily().getFamilyImage());
+			product.setFamilyName(
+					childArticle.getChildArticleIdentifier().getParentArticles().getParentArticleIdentifier().getBrick()
+							.getBrickIdentifier().getClassEntity().getClassIdentifier().getFamily().getFamilyName());
+			product.setFamilyImage(
+					childArticle.getChildArticleIdentifier().getParentArticles().getParentArticleIdentifier().getBrick()
+							.getBrickIdentifier().getClassEntity().getClassIdentifier().getFamily().getFamilyImage());
 			product.setParentArticlesList(new ArrayList<>());
 
 			if (null == parentArticlesMap.get(childArticle.getChildArticleIdentifier().getParentArticles()
-					.getParentArticleIdentifier().getProductId())) {
+					.getParentArticleIdentifier().getParentArticleId())) {
 
 				ParentArticles parentArticle = new ParentArticles();
 				parentArticle.setProductId(childArticle.getChildArticleIdentifier().getParentArticles()
-						.getParentArticleIdentifier().getProductId());
-				parentArticle
-						.setProductName(childArticle.getChildArticleIdentifier().getParentArticles().getProductName());
+						.getParentArticleIdentifier().getParentArticleId());
+				parentArticle.setProductName(
+						childArticle.getChildArticleIdentifier().getParentArticles().getParentArticleImage());
 				parentArticle.setProductImage(
-						childArticle.getChildArticleIdentifier().getParentArticles().getProductImage());
-				parentArticle.setClassId(childArticle.getChildArticleIdentifier().getParentArticles().getClassId());
-				parentArticle.setBrickId(childArticle.getChildArticleIdentifier().getParentArticles().getBrickId());
+						childArticle.getChildArticleIdentifier().getParentArticles().getParentArticleImage());
+				parentArticle.setClassId(
+						childArticle.getChildArticleIdentifier().getParentArticles().getParentArticleIdentifier()
+								.getBrick().getBrickIdentifier().getClassEntity().getClassIdentifier().getClassId());
+				parentArticle.setBrickId(childArticle.getChildArticleIdentifier().getParentArticles()
+						.getParentArticleIdentifier().getBrick().getBrickIdentifier().getBrickId());
 				parentArticle.setBrandId(childArticle.getChildArticleIdentifier().getParentArticles().getBrandId());
 				parentArticle.setExpiry(childArticle.getChildArticleIdentifier().getParentArticles().getExpiry());
 				parentArticle.setTaxCode(childArticle.getTaxCode());
 				parentArticle.setChildArticlesList(new ArrayList<>());
 
 				parentArticlesMap.put(childArticle.getChildArticleIdentifier().getParentArticles()
-						.getParentArticleIdentifier().getProductId(), parentArticle);
+						.getParentArticleIdentifier().getParentArticleId(), parentArticle);
 
 			}
 
@@ -150,14 +185,8 @@ public class ProductServiceImpl implements ProductService {
 			childArticles.setMaximumRetailPrice(childArticle.getMaximumRetailPrice());
 			childArticles.setDisplay(childArticle.isDisplay());
 
-			Weight weight = new Weight();
-			weight.setWeightCode(childArticle.getChildArticleIdentifier().getWeights().getWeightCode());
-			weight.setWeight(childArticle.getChildArticleIdentifier().getWeights().getWeight());
-			weight.setUnitOfMeasurement(childArticle.getChildArticleIdentifier().getWeights().getUnitOfMeasurement());
-			childArticles.setWeight(weight);
-
 			parentArticlesMap.get(childArticle.getChildArticleIdentifier().getParentArticles()
-					.getParentArticleIdentifier().getProductId()).getChildArticlesList().add(childArticles);
+					.getParentArticleIdentifier().getParentArticleId()).getChildArticlesList().add(childArticles);
 
 		});
 

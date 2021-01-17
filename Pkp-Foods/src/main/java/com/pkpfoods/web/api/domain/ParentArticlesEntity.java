@@ -1,29 +1,20 @@
 package com.pkpfoods.web.api.domain;
 
-import java.util.Set;
-
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
-@Entity(name = "products")
+@Entity(name = "admin_classification_parent_articles")
 @Data
 public class ParentArticlesEntity {
 
 	@EmbeddedId
-	private ParentArticleIdentifier parentArticleIdentifier;
+	private ParentArticlesIdentifier parentArticleIdentifier;
 
-	private String productName;
+	private String parentArticleName;
 
-	private String productImage;
-
-	private String classId;
-
-	private String brickId;
+	private String parentArticleImage;
 
 	private String brandId;
 
@@ -31,7 +22,4 @@ public class ParentArticlesEntity {
 
 	private String description;
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "childArticleIdentifier.parentArticles")
-	private Set<ChildArticlesEntity> childArticles;
 }

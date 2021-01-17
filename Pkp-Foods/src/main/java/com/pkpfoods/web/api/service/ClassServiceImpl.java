@@ -26,7 +26,25 @@ public class ClassServiceImpl implements ClassService {
 
 	@Override
 	public void insertClasses(List<ClassEntity> classes) {
-		classRepository.saveAll(classes);
+		classes.forEach(_class -> {
+
+			List<ClassEntity> classesList = classRepository.findAllByOrderByClassIdentifierClassId();
+			int i = 0;
+
+			for (; i < classesList.size(); i++) {
+				if (Integer.parseInt(classesList.get(i).getClassIdentifier().getClassId()) != i + 1) {
+					_class.getClassIdentifier().setClassId(String.format("%02d", i + 1));
+					break;
+				}
+			}
+
+			if (_class.getClassIdentifier().getClassId() == null) {
+				_class.getClassIdentifier().setClassId(String.format("%02d", i + 1));
+			}
+
+			classRepository.save(_class);
+
+		});
 	}
 
 	@Override
