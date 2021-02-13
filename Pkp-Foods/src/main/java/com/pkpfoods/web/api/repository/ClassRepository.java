@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.pkpfoods.web.api.domain.ClassEntity;
-import com.pkpfoods.web.api.domain.ClassIdentifier;
+import com.pkpfoods.web.api.entity.ClassEntity;
+import com.pkpfoods.web.api.entity.ClassIdentifier;
 
 @Repository
 public interface ClassRepository extends CrudRepository<ClassEntity, ClassIdentifier> {

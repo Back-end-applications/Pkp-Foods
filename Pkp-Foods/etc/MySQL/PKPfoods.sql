@@ -199,12 +199,35 @@ CREATE TABLE `pkp_foods`.`customer_profile` (
   `customer_id` VARCHAR(30) NOT NULL,
   `first_name` VARCHAR(100) NOT NULL,
   `last_name` VARCHAR(100) NOT NULL,
+  `phone_number` BIGINT NOT NULL,
   `email` VARCHAR(200) NOT NULL,
   `active` TINYINT(1) NOT NULL,
+  `password` VARCHAR(200) NOT NULL,
   `create_date` DATE NOT NULL,
   `last_update` DATE NOT NULL,
   PRIMARY KEY (`customer_id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE);
+  
+/* User Queries */
+CREATE TABLE `pkp_foods`.`users` (
+  `id` VARCHAR(20) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
+  `username` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`));
+  
+CREATE TABLE `pkp_foods`.`roles` (
+  `id` VARCHAR(20) NOT NULL,
+  `name` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`id`));
+  
+INSERT INTO `pkp_foods`.`roles`(id, name) VALUES(0, 'ROLE_USER');
+INSERT INTO `pkp_foods`.`roles`(id, name) VALUES(1, 'ROLE_ADMIN');
+  
+CREATE TABLE `pkp_foods`.`user_roles` (
+  `user_id` VARCHAR(20) NOT NULL,
+  `role_id` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`user_id`, `role_id`));
 
 /* Table deletion queries */
 DROP TABLE `pkp_foods`.`admin_classification_child_articles`;

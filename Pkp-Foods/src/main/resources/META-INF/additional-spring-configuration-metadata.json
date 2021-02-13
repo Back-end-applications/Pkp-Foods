@@ -1,0 +1,14 @@
+{
+	"properties": [
+		{
+			"name": "pkpFoods.app.jwt-expiration-ms",
+			"type": "java.lang.String",
+			"description": "Expiration time for JWT"
+		},
+		{
+			"name": "pkpFoods.app.jwtSecret",
+			"type": "java.lang.String",
+			"description": "An base 64 encoded key that is specific for PKP Foods to digitally sign JWT."
+		}
+	]
+}

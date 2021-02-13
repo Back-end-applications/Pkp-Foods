@@ -1,4 +1,4 @@
-package com.pkpfoods.web.api.domain;
+package com.pkpfoods.web.api.entity;
 
 import java.io.Serializable;
 

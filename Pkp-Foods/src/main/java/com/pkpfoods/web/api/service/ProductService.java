@@ -2,9 +2,9 @@ package com.pkpfoods.web.api.service;
 
 import java.util.List;
 
-import com.pkpfoods.web.api.domain.ChildArticlesEntity;
-import com.pkpfoods.web.api.domain.ParentArticlesEntity;
 import com.pkpfoods.web.api.domain.Products;
+import com.pkpfoods.web.api.entity.ChildArticlesEntity;
+import com.pkpfoods.web.api.entity.ParentArticlesEntity;
 
 public interface ProductService {
 

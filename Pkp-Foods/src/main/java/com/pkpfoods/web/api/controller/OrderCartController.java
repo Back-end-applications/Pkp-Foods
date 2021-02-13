@@ -15,24 +15,24 @@ import com.pkpfoods.web.api.service.FamilyService;
 
 @RestController
 @CrossOrigin("*")
-public class FamilyController {
+public class OrderCartController {
 
 	@Autowired
 	private FamilyService familyService;
 
-	@GetMapping(value = "getFamilies")
-	public @ResponseBody Iterable<FamilyEntity> getFamilies() {
+	@GetMapping(value = "getCartDetails")
+	public @ResponseBody Iterable<FamilyEntity> getCartDetails() {
 		return familyService.getFamilies();
 	}
 
-	@PostMapping(value = "insertFamilies", consumes = "application/json")
-	public void insertFamilies(@RequestBody List<FamilyEntity> families) {
-		families.forEach(family -> System.out.println(family.toString()));
+	@PostMapping(value = "addToCart", consumes = "application/json")
+	public void addToCart(@RequestBody List<FamilyEntity> families) {
 		familyService.insertFamilies(families);
 	}
 
-	@PostMapping(value = "deleteFamilies")
-	public void deleteFamilies(@RequestBody List<FamilyEntity> families) {
+	@PostMapping(value = "deleteFromCart")
+	public void deleteFromCart(@RequestBody List<FamilyEntity> families) {
 		familyService.deleteFamilies(families);
 	}
+
 }

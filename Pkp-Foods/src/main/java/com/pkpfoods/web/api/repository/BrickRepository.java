@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.pkpfoods.web.api.domain.BrickEntity;
-import com.pkpfoods.web.api.domain.BrickIdentifier;
+import com.pkpfoods.web.api.entity.BrickEntity;
+import com.pkpfoods.web.api.entity.BrickIdentifier;
 
 @Repository
 public interface BrickRepository extends CrudRepository<BrickEntity, BrickIdentifier> {

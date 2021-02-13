@@ -1,9 +1,15 @@
 # MySQL Database connection details
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/pkp_foods
-    username: admin
+    url: jdbc:mysql://127.0.0.1:3306/pkp_foods
+    username: root
     password: admin
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
+    
+#App properties
+pkpFoods:
+  app:
+    jwtSecret: pkpFoodsSecretKey 
+    jwtExpirationMs: 86400000

@@ -5,7 +5,9 @@ import lombok.Data;
 @Data
 public class ChildArticles {
 
-	private Weight weight;
+	private int weight;
+
+	private String unitOfMeasurement;
 
 	private double costPrice;
 

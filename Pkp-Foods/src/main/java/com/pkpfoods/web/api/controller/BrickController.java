@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pkpfoods.web.api.domain.BrickEntity;
+import com.pkpfoods.web.api.entity.BrickEntity;
 import com.pkpfoods.web.api.service.BrickService;
 
 @RestController

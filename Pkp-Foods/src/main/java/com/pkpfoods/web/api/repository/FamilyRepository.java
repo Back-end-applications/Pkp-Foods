@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.pkpfoods.web.api.domain.FamilyEntity;
+import com.pkpfoods.web.api.entity.FamilyEntity;
 
 @Repository
 public interface FamilyRepository extends CrudRepository<FamilyEntity, String> {

@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.pkpfoods.web.api.domain.ParentArticlesEntity;
-import com.pkpfoods.web.api.domain.ParentArticlesIdentifier;
+import com.pkpfoods.web.api.entity.ParentArticlesEntity;
+import com.pkpfoods.web.api.entity.ParentArticlesIdentifier;
 
 @Repository
 public interface ParentArticlesRepository extends CrudRepository<ParentArticlesEntity, ParentArticlesIdentifier> {

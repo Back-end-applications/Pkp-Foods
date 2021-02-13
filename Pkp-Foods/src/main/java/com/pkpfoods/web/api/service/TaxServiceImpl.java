@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pkpfoods.web.api.domain.TaxEntity;
+import com.pkpfoods.web.api.entity.TaxEntity;
 import com.pkpfoods.web.api.repository.TaxRepository;
 
 @Service

@@ -1,4 +1,4 @@
-package com.pkpfoods.web.api.domain;
+package com.pkpfoods.web.api.entity;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;

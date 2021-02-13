@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pkpfoods.web.api.domain.ChildArticles;
-import com.pkpfoods.web.api.domain.ChildArticlesEntity;
 import com.pkpfoods.web.api.domain.ParentArticles;
-import com.pkpfoods.web.api.domain.ParentArticlesEntity;
 import com.pkpfoods.web.api.domain.Products;
+import com.pkpfoods.web.api.entity.ChildArticlesEntity;
+import com.pkpfoods.web.api.entity.ParentArticlesEntity;
 import com.pkpfoods.web.api.repository.ChildArticlesRepository;
 import com.pkpfoods.web.api.repository.ParentArticlesRepository;
 import com.pkpfoods.web.api.repository.TaxRepository;
@@ -179,6 +179,8 @@ public class ProductServiceImpl implements ProductService {
 
 			ChildArticles childArticles = new ChildArticles();
 
+			childArticles.setWeight(childArticle.getWeight());
+			childArticles.setUnitOfMeasurement(childArticle.getUnitOfMeasurement());
 			childArticles.setCostPrice(childArticle.getCostPrice());
 			childArticles.setInventory(childArticle.getInventory());
 			childArticles.setMargin(childArticle.getMargin());

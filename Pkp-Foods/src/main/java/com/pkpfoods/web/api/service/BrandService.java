@@ -2,7 +2,7 @@ package com.pkpfoods.web.api.service;
 
 import java.util.List;
 
-import com.pkpfoods.web.api.domain.BrandEntity;
+import com.pkpfoods.web.api.entity.BrandEntity;
 
 public interface BrandService {
 
